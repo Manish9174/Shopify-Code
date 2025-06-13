@@ -1,0 +1,69 @@
+<div class="trust-badges-section">
+  <h1 class="headtrst">
+    {{ section.settings.headtrst }}
+  </h1>
+  <div class="trust-badges-container">
+   {% for block in section.blocks %}
+     <div class="widthTrust">
+      <img src="{{ block.settings.image | img_url }}" alt="{{ image.alt | escape }}" class="trust-badge">  
+      <p class="icon-with-caption__text align-center">{{ block.settings.titleOfimg }}</p>
+     </div>
+   {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Trust-badge",
+  "settings": [
+    {
+      "type":"text",
+      "id":"headtrst",
+      "label":"Type Heading",
+      "default":"Your peace of mind is our priority"
+    
+    }
+  ],
+  
+  "blocks": [
+    {
+    "type": "column",
+    "name": "Trust-badge",
+    "limit": 5,
+    "settings": [
+    {
+      "type": "image_picker",
+      "label": "Badge Image",
+      "id": "image"
+    },
+         {
+      "type": "text",
+      "label": "Title Text",
+      "id": "titleOfimg"
+    },
+    {
+      "type": "text",
+      "label": "Alt Text",
+      "id": "alt_text"
+    }
+  ]
+    }
+    
+  ],
+  "presets": [
+  {
+      "name": "Trust-badge",
+      "blocks": [
+          {
+              "type": "column"
+          },
+          {
+              "type": "column"
+          }
+      ]
+  }
+  ]
+}
+{% endschema %}
+
