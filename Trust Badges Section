@@ -1,0 +1,120 @@
+
+/* trust badges css */
+
+
+.trust-badges-section {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.trust-badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.trust-badge {
+  max-width: 100px;
+  margin: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.trust-badge:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+  .trust-badge {
+    max-width: 80px;
+    margin: 5px;
+  }
+
+  .widthTrust {
+    width: 30%;
+  }
+}
+
+.trust-badges-container {
+  padding: 20px 0px 20px 0px;
+
+  gap: 30px;
+}
+
+.trust-badges-section {
+  padding: 60px 13px;
+}
+
+/* trust badges css */
+
+
+
+<div class="trust-badges-section">
+  <h1 class="headtrst">
+    {{ section.settings.headtrst }}
+  </h1>
+  <div class="trust-badges-container">
+   {% for block in section.blocks %}
+     <div class="widthTrust">
+      <img src="{{ block.settings.image | img_url }}" alt="{{ image.alt | escape }}" class="trust-badge">  
+      <p class="icon-with-caption__text align-center">{{ block.settings.titleOfimg }}</p>
+     </div>
+   {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Trust-badge",
+  "settings": [
+    {
+      "type":"text",
+      "id":"headtrst",
+      "label":"Type Heading",
+      "default":"Your peace of mind is our priority"
+    
+    }
+  ],
+  
+  "blocks": [
+    {
+    "type": "column",
+    "name": "Trust-badge",
+    "limit": 5,
+    "settings": [
+    {
+      "type": "image_picker",
+      "label": "Badge Image",
+      "id": "image"
+    },
+         {
+      "type": "text",
+      "label": "Title Text",
+      "id": "titleOfimg"
+    },
+    {
+      "type": "text",
+      "label": "Alt Text",
+      "id": "alt_text"
+    }
+  ]
+    }
+    
+  ],
+  "presets": [
+  {
+      "name": "Trust-badge",
+      "blocks": [
+          {
+              "type": "column"
+          },
+          {
+              "type": "column"
+          }
+      ]
+  }
+  ]
+}
+{% endschema %}
+
