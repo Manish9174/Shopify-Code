@@ -1,0 +1,39 @@
+    <button class="ajax-add-to-cart-btn"
+      data-variant-id="{{ product.variants.first.id }}">
+      Add to Cart
+    </button>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".ajax-add-to-cart-btn");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const variantId = this.getAttribute("data-variant-id");
+
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: variantId,
+            quantity: 1
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          alert("✅ Added to cart: " + data.title);
+          console.log("Added:", data);
+        })
+        .catch(err => {
+          console.error("❌ Error:", err);
+          alert("Something went wrong.");
+        });
+      });
+    });
+  });
+</script>
